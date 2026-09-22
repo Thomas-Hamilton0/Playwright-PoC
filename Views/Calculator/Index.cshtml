@@ -1,0 +1,51 @@
+@model WebVI.Calculator.Models.CalculatorViewModel
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<h1>Calculator</h1>
+<p>Enter two numbers and choose an operation.</p>
+
+<form asp-action="Index" method="post" class="mt-3">
+    @Html.AntiForgeryToken()
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="A" class="form-label"></label>
+        <input asp-for="A" class="form-control" />
+        <span asp-validation-for="A" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="B" class="form-label"></label>
+        <input asp-for="B" class="form-control" />
+        <span asp-validation-for="B" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Op" class="form-label"></label>
+        <select asp-for="Op" class="form-select"
+                asp-items="Html.GetEnumSelectList<WebVI.Calculator.Models.Operation>()">
+        </select>
+        <span asp-validation-for="Op" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model?.ErrorMessage))
+{
+    <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+}
+
+@if (Model?.Result is not null && string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert alert-success mt-3">
+        <strong>Result:</strong> @Model.Result
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

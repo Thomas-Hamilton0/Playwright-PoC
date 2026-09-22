@@ -1,0 +1,13 @@
+using WebVI.Calculator.Models;
+
+namespace WebVI.Calculator.Services
+{
+    public interface IArithmeticService
+    {
+        decimal Add(decimal a, decimal b);
+        decimal Subtract(decimal a, decimal b);
+        decimal Multiply(decimal a, decimal b);
+        decimal Divide(decimal a, decimal b);
+        decimal Calculate(decimal a, decimal b, Operation op);
+    }
+}
