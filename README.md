@@ -3,6 +3,7 @@ Small Playwright Proof of Concept for the DevOps Assignment
 
 Can use the VS Code extention instead if you like VS Code
 
+In CMD enter the following commands preferably where the project directory is to keep things tidy
 npm init playwright@latest
 
 // required because otherwise the school network will block the installation
